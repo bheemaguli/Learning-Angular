@@ -1,0 +1,51 @@
+<h4 style="margin-top:20px; margin-bottom:10px">The below button is enabled only for 10seconds.</h4>
+
+<form class="row g-2">
+    <div class="col-auto">
+        <input type="text" class="form-control" style="width:500px" (input)="onUpdateServerName($event)">
+        <!-- [(ngModel)]="serverName" not working-->
+    </div>
+    <div class="col-auto">
+        <button class="btn btn-primary" [disabled]="!allowNewServer" (click)="onCreateServer()">Add User</button>
+    </div>
+</form>
+<h4 style="margin-top:10px" *ngIf="serverCreated; else noServer">{{ serverCreationStatus }}</h4>
+<ng-template #noServer>
+    <p>{{serverCreationStatus }}</p>
+</ng-template>
+
+
+
+<!-- <p>{{ serverName }}</p> -->
+
+
+<!-- <p>{{ allowNewServer }}</p> -->
+<!-- <p [innerText]="allowNewServer"></p> -->
+
+<!-- <input 
+    type="text"
+    class="form-control"
+    (input)="onUpdateServerName($event)"
+    style="margin-top:50px; margin-bottom:10px"
+> -->
+<div style="margin-top:50px"></div>
+<app-server></app-server>
+<p class="blue">This is the server 2 content.</p>
+<app-server *ngFor="let server of servers"></app-server>
+
+<h3>Assignment 3</h3>
+<div class="col-xs-12">
+    <li>Add Button which displays 'Display Details'.</li>
+    <li>Add any paragraph of your choice, eg., = Secret Code = 'tuna'.</li>
+    <li>Toggle the displaying of that paragraph with the button created on the first step.</li>
+    <li>Log all button clicks in an array and output that array below the secret paragraph (maybe log a timestamp ot a incrementing number).</li>
+    <li>Starting at the 5th log item, give all future items a blue background(via ngStyle) and white text (via ngClass).</li>
+</div>
+<h4>Solution</h4>
+<button class="button button-primary" (click)="onToggle()">Display Details</button>
+<p *ngIf="showSecret">Secret Code = 'tuna'</p>
+<div *ngFor="let log of logs"
+    [ngStyle]="{backgroundColor: log>=5 ? 'blue' : 'transparent'}"
+    [ngClass]="{'white-text' : log >=5}"
+>{{ log }}</div>
+
